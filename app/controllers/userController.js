@@ -47,8 +47,8 @@ let signUpFunction = (req, res) => {
                             firstName: req.body.firstName,
                             lastName: req.body.lastName || '',
                             email: req.body.email.toLowerCase(),
-                            country: req.body.country,
-                            countryCode: countryCode.findCountryCode(req.body.country.toLowerCase()),
+                            //country: req.body.country,
+                            //countryCode: countryCode.findCountryCode(req.body.country.toLowerCase()),
                             mobileNumber: req.body.mobileNumber,
                             password: passwordLib.hashpassword(req.body.password),
                             createdOn: time.now()
