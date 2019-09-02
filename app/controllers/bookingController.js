@@ -79,6 +79,25 @@ let editBooking = (req, res) => {
     })
 } // end editBooking function.
 
+let saveBookingData = (req,res) =>{
+    let saveBookingData = new BookingModel ({
+        originAddress: req.body.originAddress,
+        destinationAddress: req.body.destinationAddress,
+        departureDate: req.body.departureDate,
+        returnDate: req.body.returnDate
+    })
+    saveBookingData.save((err, saveBookingData) => {
+        if (err) {
+            logger.error(err.message, 'bookingController: saveBookingData', 10)
+            let apiResponse = response.generate(true, 'Failed to save booking data', 500, null)
+            res.send(apiResponse)
+        } else {
+            let saveBookingDataObj = saveBookingData.toObject();
+            res.send(saveBookingDataObj);
+        }
+    })
+} // end of save booking data.
+
 let createBooking = (req, res) => {
     let validateBookingInput = () => {
         return new Promise((resolve, reject) => {
@@ -151,5 +170,6 @@ module.exports = {
     getAllBookings: getAllBookings,
     getBookingDetails: getBookingDetails,
     editBooking: editBooking,
-    createBooking: createBooking
+    createBooking: createBooking,
+    saveBookingData: saveBookingData
 }

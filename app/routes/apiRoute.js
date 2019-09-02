@@ -46,6 +46,8 @@ module.exports.setRouter = (app) => {
 
     app.put(`${baseUrl}/:bookingId/edits`, auth.isAuthorized,bookingController.editBooking);
 
-    app.post(`${baseUrl}/create/booking`,bookingController.createBooking);
+    app.post(`${baseUrl}/create/booking`, auth.isAuthorized,bookingController.createBooking);
+
+    app.post(`${baseUrl}/save/booking/data`,bookingController.saveBookingData);
 
 }
