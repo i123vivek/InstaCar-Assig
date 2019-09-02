@@ -1,0 +1,192 @@
+// output for signup
+
+{
+    "error": false,
+    "message": "User created",
+    "status": 200,
+    "data": {
+        "userId": "QtUFlHnmH",
+        "firstName": "rahul",
+        "lastName": "kumar",
+        "address": "",
+        "mobileNumber": 9431582058,
+        "email": "rahul@gmail.com",
+        "DateOfBirth": null,
+        "createdOn": "2019-09-02T06:19:29.000Z",
+        "_id": "5d6cb4711eb67b0a7339f460",
+        "__v": 0
+    }
+}
+
+// output for login
+
+{
+    "error": false,
+    "message": "Login Successful",
+    "status": 200,
+    "data": {
+        "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RpZCI6IndmdEZPQzlaYSIsImlhdCI6MTU2NzQwNTM1OTc0NSwiZXhwIjoxNTY3NDkxNzU5NzQ1LCJzdWIiOiJhdXRoVG9rZW4iLCJpc3MiOiJlZC1wMS1NZWV0aW5nLVBsYW5uZXIiLCJkYXRhIjp7InVzZXJJZCI6IlF0VUZsSG5tSCIsImZpcnN0TmFtZSI6InJhaHVsIiwibGFzdE5hbWUiOiJrdW1hciIsImFkZHJlc3MiOiIiLCJtb2JpbGVOdW1iZXIiOjk0MzE1ODIwNTgsImVtYWlsIjoicmFodWxAZ21haWwuY29tIiwiRGF0ZU9mQmlydGgiOm51bGx9fQ.RVTI-o5bD-sSVevlVip0YJ4ZjoF00OrXB0bzkX-Mwd8",
+        "userDetails": {
+            "userId": "QtUFlHnmH",
+            "firstName": "rahul",
+            "lastName": "kumar",
+            "address": "",
+            "mobileNumber": 9431582058,
+            "email": "rahul@gmail.com",
+            "DateOfBirth": null
+        }
+    }
+}
+
+// output for adding driver.
+
+{
+    "error": false,
+    "message": "Driver Added",
+    "status": 200,
+    "data": {
+        "driverId": "2cSSCT5ui",
+        "driverName": "Rakesh Kumar",
+        "driverEmail": "rakesh@gmail.com",
+        "driverPanCardNumber": "PAN00123",
+        "driverDL": "DL123456",
+        "language": [
+            "english,hindi"
+        ],
+        "driverMobileNumber": 9431562056,
+        "driverGrade": "b",
+        "driverAddress": "bengalore",
+        "_id": "5d6cb6e51eb67b0a7339f462",
+        "__v": 0
+    }
+}
+
+// output for getting all driver details.
+
+{
+    "error": false,
+    "message": "All driver details found",
+    "status": 200,
+    "data": [
+        {
+            "driverId": "2cSSCT5ui",
+            "driverName": "Rakesh Kumar",
+            "driverEmail": "rakesh@gmail.com",
+            "driverPanCardNumber": "PAN00123",
+            "driverDL": "DL123456",
+            "language": [
+                "english,hindi"
+            ],
+            "driverMobileNumber": 9431562056,
+            "driverGrade": "b",
+            "driverAddress": "bengalore"
+        },
+        {
+            "driverId": "HIDemtsEz",
+            "driverName": "Bob marley",
+            "driverEmail": "bob@gmail.com",
+            "driverPanCardNumber": "PAN0012345",
+            "driverDL": "DL654321",
+            "language": [
+                "english,kanada,hindi"
+            ],
+            "driverMobileNumber": 9431572056,
+            "driverGrade": "a",
+            "driverAddress": "bengalore"
+        }
+    ]
+}
+
+// output for getting single driver details by driverId.
+
+{
+    "error": false,
+    "message": "Driver details found",
+    "status": 200,
+    "data": {
+        "driverId": "2cSSCT5ui",
+        "driverName": "Rakesh Kumar",
+        "driverEmail": "rakesh@gmail.com",
+        "driverPanCardNumber": "PAN00123",
+        "driverDL": "DL123456",
+        "language": [
+            "english,hindi"
+        ],
+        "driverMobileNumber": 9431562056,
+        "driverGrade": "b",
+        "driverAddress": "bengalore"
+    }
+}
+
+// output for adding car.
+
+{
+    "carId": "AHFqy30Ux",
+    "modelType": "LXi",
+    "brand": "Swift",
+    "color": "red",
+    "carRegNumber": "KA01GH1235",
+    "noOfSeats": 4,
+    "carRate": 300,
+    "fuelType": "diesel",
+    "_id": "5d6cbdeb9fa4530faa29f3c6",
+    "__v": 0
+}
+
+// output of all car details.
+
+{
+    "error": false,
+    "message": "All car details found",
+    "status": 200,
+    "data": [
+        {
+            "carId": "i077WQSrS",
+            "modelType": "LXi",
+            "brand": "Swift",
+            "color": "red",
+            "carRegNumber": "KA01GH1234",
+            "noOfSeats": 4,
+            "carRate": 300,
+            "fuelType": "diesel"
+        },
+        {
+            "carId": "AHFqy30Ux",
+            "modelType": "LXi",
+            "brand": "Swift",
+            "color": "red",
+            "carRegNumber": "KA01GH1235",
+            "noOfSeats": 4,
+            "carRate": 300,
+            "fuelType": "diesel"
+        },
+        {
+            "carId": "wJDGkAJFc",
+            "modelType": "LXi",
+            "brand": "i10",
+            "color": "red",
+            "carRegNumber": "KA01GH1236",
+            "noOfSeats": 4,
+            "carRate": 300,
+            "fuelType": "diesel"
+        }
+    ]
+}
+
+// output of getting single car details.
+
+{
+    "error": false,
+    "message": "Car details found",
+    "status": 200,
+    "data": {
+        "carId": "AHFqy30Ux",
+        "modelType": "LXi",
+        "brand": "Swift",
+        "color": "red",
+        "carRegNumber": "KA01GH1235",
+        "noOfSeats": 4,
+        "carRate": 300,
+        "fuelType": "diesel"
+    }
+}

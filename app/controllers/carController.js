@@ -65,8 +65,8 @@ let addCar = (req, res) =>{
             if (err) {
                 logger.error(err.message, 'carController: addCar', 10)
                 let apiResponse = response.generate(true, 'Failed To add Car', 500, null)
-                reject(apiResponse)
-            } else if (check.isEmpty(retrievedDriverDetails)) {
+                res.send(apiResponse)
+            } else if (check.isEmpty(retrievedCarDetails)) {
                 let newCar = new VechicleModel ({
                     carId: shortid.generate(),
                     modelType: req.body.modelType,
@@ -81,16 +81,16 @@ let addCar = (req, res) =>{
                     if (err) {
                         logger.error(err.message, 'carController: addCar', 10)
                         let apiResponse = response.generate(true, 'Failed to Add new Car', 500, null)
-                        reject(apiResponse)
+                        res.send(apiResponse)
                     } else {
                         let newCarObj = newCar.toObject();
-                        resolve(newCarObj);
+                        res.send(newCarObj);
                     }
                 })
             } else {
                 logger.error('Car Cannot Be Added.Car Already Present', 'carController: addCar', 4)
                 let apiResponse = response.generate(true, 'Car Already Present With this carId', 403, null)
-                reject(apiResponse)
+                res.send(apiResponse)
             }
         })
 } // end addCar function.

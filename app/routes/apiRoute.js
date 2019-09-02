@@ -32,19 +32,19 @@ module.exports.setRouter = (app) => {
 
     app.get(`${baseUrl}/details/allCars`,auth.isAuthorized,carController.getAllCars);
 
-    app.get(`${baseUrl}/read/:carId/Details`,auth.isAuthorized,carController.getCarInfo);
+    app.get(`${baseUrl}/read/:carId/Detail`,auth.isAuthorized,carController.getCarInfo);
 
     app.post(`${baseUrl}/add/car`,auth.isAuthorized,carController.addCar);
 
-    app.put(`${baseUrl}/:carId/edit`, auth.isAuthorized,carController.editCar);
+    app.put(`${baseUrl}/edit/:carId`, auth.isAuthorized,carController.editCar);
 
     //---------------------- routes for booking ----------------
 
     app.get(`${baseUrl}/details/allBookings`,auth.isAuthorized,bookingController.getAllBookings);
 
-    app.get(`${baseUrl}/read/:bookingId/Details`,auth.isAuthorized,bookingController.getBookingDetails);
+    app.get(`${baseUrl}/get/:bookingId/Details`,auth.isAuthorized,bookingController.getBookingDetails);
 
-    app.put(`${baseUrl}/:bookingId/edit`, auth.isAuthorized,bookingController.editBooking);
+    app.put(`${baseUrl}/:bookingId/edits`, auth.isAuthorized,bookingController.editBooking);
 
     app.post(`${baseUrl}/create/booking`,bookingController.createBooking);
 

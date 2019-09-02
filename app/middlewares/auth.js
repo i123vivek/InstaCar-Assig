@@ -34,30 +34,11 @@ let isAuthorized = (req, res, next) => {
                         res.send(apiResponse)
                     }
                     else {
+                        req.user = { userId: decoded.data.userId}
+                        next();
+                        console.log(req.user);
 
-                        User.findOne({ userId: decoded.data.userId }, (err, authUserDetails) => {
-
-                            if (err) {
-                                logger.error(err.message, 'Authorization Middleware -> Checking For admin status', 10);
-                                let apiResponse = responseLib.generate(true, 'Failed To Check User For Admin', 500, null);
-                                res.send(apiResponse)
-                            } else if (check.isEmpty(authUserDetails)) {
-                                logger.error('No UserDetailPresent', 'Authorization Middleware -> Checking For admin status', 10)
-                                let apiResponse = responseLib.generate(true, 'Invalid or Empty User Details', 404, null)
-                                res.send(apiResponse)
-
-                            } else {
-                                if (authUserDetails.typeOfUser === "Admin") {
-                                    req.user = { userId: decoded.data.userId, isAdmin: true, authinfo: { username: authUserDetails.userName, name: authUserDetails.firstName } }
-                                    next()
-                                }
-                                else {
-                                    req.user = { userId: decoded.data.userId, isAdmin: false };
-                                    next()
-                                }
-                                console.log(req.user);
-                            }
-                        })
+                        
                     }
 
 
