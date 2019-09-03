@@ -220,6 +220,27 @@ let loginFunction = (req, res) => {
         })
 } // end of login function
 
+let getSingleUser = (req, res) => {
+    UserModel.findOne({ 'userId': req.params.userId })
+        .select('-password -__v -_id')
+        .lean()
+        .exec((err, result) => {
+            if (err) {
+                console.log(err)
+                logger.error(err.message, 'User Controller: getSingleUser', 10)
+                let apiResponse = response.generate(true, 'Failed To Find User Details', 500, null)
+                res.send(apiResponse)
+            } else if (check.isEmpty(result)) {
+                logger.info('No User Found', 'User Controller:getSingleUser')
+                let apiResponse = response.generate(true, 'No User Found', 404, null)
+                res.send(apiResponse)
+            } else {
+                let apiResponse = response.generate(false, 'User Details Found', 200, result)
+                res.send(apiResponse)
+            }
+        })
+}// end get single user
+
 let logout = (req, res) => {
 
     AuthModel.findOneAndDelete({ userId: req.user.userId }, (err, result) => {
@@ -241,6 +262,7 @@ let logout = (req, res) => {
 module.exports = {
     signUpFunction: signUpFunction,
     loginFunction: loginFunction,
+    getSingleUser: getSingleUser,
     logout: logout
 
 }

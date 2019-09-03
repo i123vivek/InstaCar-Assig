@@ -4,6 +4,7 @@ const userController = require("./../../app/controllers/userController");
 const driverController = require("./../../app/controllers/driverController");
 const carController = require("./../../app/controllers/carController");
 const bookingController = require("./../../app/controllers/bookingController");
+const bookedDriverController = require("./../../app/controllers/driverAvailiblityController");
 const appConfig = require("./../../config/appConfig")
 const auth = require('./../middlewares/auth')
 
@@ -15,6 +16,8 @@ module.exports.setRouter = (app) => {
     app.post(`${baseUrl}/signup`, userController.signUpFunction);
 
     app.post(`${baseUrl}/login`, userController.loginFunction);
+
+    app.get(`${baseUrl}/:userId/details`, auth.isAuthorized, userController.getSingleUser);
 
     app.post(`${baseUrl}/logout`,auth.isAuthorized, userController.logout);
 
@@ -46,8 +49,11 @@ module.exports.setRouter = (app) => {
 
     app.put(`${baseUrl}/:bookingId/edits`, auth.isAuthorized,bookingController.editBooking);
 
-    app.post(`${baseUrl}/create/booking`, auth.isAuthorized,bookingController.createBooking);
+    app.post(`${baseUrl}/create/booking`,bookingController.createBooking);
 
-    app.post(`${baseUrl}/save/booking/data`,bookingController.saveBookingData);
+    //app.post(`${baseUrl}/save/booking/data`,bookingController.saveBookingData);
+
+
+    app.get(`${baseUrl}/details/bookedDriver`,bookedDriverController.getDriverAvilablity);
 
 }

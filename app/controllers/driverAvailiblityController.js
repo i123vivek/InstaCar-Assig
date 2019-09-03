@@ -130,10 +130,48 @@ let startDate = new Date(bookingData.departureDate)
        
     } else {
         logger.info('Booking Details found', 'driverAvailablity: getBookingDetails');
-        let apiResponse = response.generate(false, 'Driver Booking details found', 200, result)
+        let apiResponse = response.generate(false, 'Driver Booking details eith same booking id found', 200, result)
         res.send(apiResponse)
     }
 })
+}
+
+
+
+
+let getDriverAvilablity = (req,res) =>{
+   let daysToBeChecked = createDriverBookedDateArray(req.body.startDate,req.body.endDate);
+   let theDriverBookedObjectArray =[]
+for (let x of daysToBeChecked)
+{
+    DriverBookedModel.findOne({'bookedDays':x})
+    .exec((err,result)=>{
+        if (err) {
+            console.log(err);
+            logger.error(err.message, 'driverAvailablity: getBookingDetails', 10)
+        } else if (check.isEmpty(result)) {
+            theDriverBookedObjectArray.push(result)
+        }
+        else{
+            
+        }
+
+    })
+}
+
+
+if(theDriverBookedObjectArray.length > 0){
+    let apiResponse = response.generate(false, 'got driver Booked obj array successfully', 200,theDriverBookedObject)
+    res.send (apiResponse)
+}
+else{
+    //logger.error(err.message, 'bookingController: createBooking', 10)
+    let apiResponse = response.generate(true, 'no driver Booked obj found', 500, theDriverBookedObjectArray)
+    res.send (apiResponse)
+}
+
+
+   
 }
 
 
@@ -143,7 +181,8 @@ let startDate = new Date(bookingData.departureDate)
 
 
 module.exports={
-    createDriverAvailiblityObj:createDriverAvailiblityObj
+    createDriverAvailiblityObj:createDriverAvailiblityObj,
+    getDriverAvilablity:getDriverAvilablity
 }
 
 

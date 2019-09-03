@@ -14,7 +14,7 @@ const CarBookedModel = mongoose.model('CarBookedInfo')
 const DriverModel = mongoose.model('Driver');
 const DriverBookedModel = mongoose.model('DriverBookedInfo');
 const VechicleModel = mongoose.model('Vechicle');
-
+const bookedDriverController = require("./../../app/controllers/driverAvailiblityController");
 
 let getAllBookings = (req, res) => {
     BookingModel.find()
@@ -79,24 +79,27 @@ let editBooking = (req, res) => {
     })
 } // end editBooking function.
 
-let saveBookingData = (req,res) =>{
-    let saveBookingData = new BookingModel ({
-        originAddress: req.body.originAddress,
-        destinationAddress: req.body.destinationAddress,
-        departureDate: req.body.departureDate,
-        returnDate: req.body.returnDate
-    })
-    saveBookingData.save((err, saveBookingData) => {
-        if (err) {
-            logger.error(err.message, 'bookingController: saveBookingData', 10)
-            let apiResponse = response.generate(true, 'Failed to save booking data', 500, null)
-            res.send(apiResponse)
-        } else {
-            let saveBookingDataObj = saveBookingData.toObject();
-            res.send(saveBookingDataObj);
-        }
-    })
-} // end of save booking data.
+// let saveBookingData = (req,res) =>{
+//     let saveBookingData = new BookingDataModel ({
+//         bookingDataId: shortid.generate(), 
+//         originAddress: req.body.originAddress,
+//         destinationAddress: req.body.destinationAddress,
+//         departureDate: req.body.departureDate,
+//         returnDate: req.body.returnDate
+//     })
+//     saveBookingData.save((err, saveBookingData) => {
+//         if (err) {
+//             logger.error(err.message, 'bookingController: saveBookingData', 10)
+//             let apiResponse = response.generate(true, 'Failed to save booking data', 500, null)
+//             res.send(apiResponse)
+//         } else {
+//             let saveBookingDataObj = saveBookingData.toObject();
+//             //res.send(saveBookingDataObj);
+//             let apiResponse = response.generate(false, 'Booking created', 200, saveBookingDataObj)
+//             res.send(apiResponse)
+//         }
+//     })
+// } // end of save booking data.
 
 let createBooking = (req, res) => {
     let validateBookingInput = () => {
@@ -146,6 +149,7 @@ let createBooking = (req, res) => {
                     reject(apiResponse)
                 } else {
                     let newBookingObj = newBooking.toObject();
+                    bookedDriverController.createDriverAvailiblityObj(newBookingObj)
                     resolve(newBookingObj);
                 }
             })
@@ -171,5 +175,5 @@ module.exports = {
     getBookingDetails: getBookingDetails,
     editBooking: editBooking,
     createBooking: createBooking,
-    saveBookingData: saveBookingData
+    
 }
