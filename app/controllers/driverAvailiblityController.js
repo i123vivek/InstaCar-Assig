@@ -36,6 +36,8 @@ function getDates(startDate, stopDate) {
     return dateArray;
 }
 
+//console.log(getDates(date1,date2));
+
 
 // var date1 = new Date();
 // console.log( typeof date1);
@@ -58,7 +60,7 @@ Date.prototype.yyyymmdd = function() {
 //   date.yyyymmdd();
 
 
-console.log(getDates(date1,date2));
+//console.log(getDates(date1,date2));
 
 
 let createDriverBookedDateArray =(startingDate,endingDate)=>{
@@ -66,6 +68,8 @@ let createDriverBookedDateArray =(startingDate,endingDate)=>{
 
     let startDate = new Date(startingDate)
     let endDate = new Date(endingDate)
+
+    console.log(getDates(startingDate,endingDate));
 
     let datesArray = getDates(startDate,endDate);
 
